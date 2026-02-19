@@ -3,8 +3,8 @@ import {
   Heart,
   MessageCircle,
   Repeat2,
-  Share,
   MoreHorizontal,
+  ChartNoAxesColumn,
   Image,
   Smile,
   Calendar,
@@ -126,8 +126,8 @@ const HomePage = () => {
       mediaCaption: '',
       replies: 0,
       reposts: 0,
-      likes: 0,
-      views: 0,
+      likes: 1,
+      views: 10,
     };
 
     try {
@@ -195,19 +195,18 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <main className="border-x border-gray-800 min-h-screen max-w-2xl mx-auto">
-        {/* Header */}
         <header className="sticky top-0 z-10 backdrop-blur-sm border-b border-gray-800">
           <Tabs defaultValue="for-you" className="w-full" onValueChange={handleTabChange}>
             <TabsList variant="line" className="w-full h-auto bg-transparent border-none p-0 rounded-none flex">
               <TabsTrigger 
                 value="for-you" 
-                className="flex-1 pt-4 pb-3 text-base font-bold data-[state=active]:text-white data-[state=inactive]:text-gray-500"
+                className="flex-1 pt-4 pb-3 text-base font-bold data-[state=active]:text-white data-[state=inactive]:text-gray-500 data-[state=active]:hover:bg-[#181818] data-[state=inactive]:hover:bg-[#181818] transition-colors rounded-none "
               >
                 For you
               </TabsTrigger>
               <TabsTrigger 
                 value="following" 
-                className="flex-1 pt-4 pb-3 text-base font-bold data-[state=active]:text-white data-[state=inactive]:text-gray-500"
+                className="flex-1 pt-4 pb-3 text-base font-bold data-[state=active]:text-white data-[state=inactive]:text-gray-500 data-[state=active]:hover:bg-[#181818] data-[state=inactive]:hover:bg-[#181818] transition-colors rounded-none "
               >
                 Following
               </TabsTrigger>
@@ -215,7 +214,6 @@ const HomePage = () => {
           </Tabs>
         </header>
         
-        {/* Post input */}
         <div className="p-4 border-b border-gray-800">
           <div className="flex gap-3">
             <Avatar className="h-10 w-10 shrink-0">
@@ -253,7 +251,7 @@ const HomePage = () => {
                 </div>
                 <Button 
                   onClick={handleCreatePost}
-                  className="bg-[#eff3f4] hover:bg-[#d7dbdc] text-black rounded-full px-5 py-0 h-9 font-bold text-sm"
+                  className="bg-white/50 hover:bg-white/85 text-black rounded-full px-5 py-0 h-9 font-bold text-sm"
                 >
                   Post
                 </Button>
@@ -262,7 +260,6 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Posts feed */}
         <div className="divide-y divide-gray-800">
           {posts.map((post) => (
             <article key={post.id} className="p-4 hover:bg-gray-900/50 transition-colors">
@@ -333,7 +330,7 @@ const HomePage = () => {
                     </button>
                     <button className="flex items-center gap-1 hover:text-blue-500 group">
                       <div className="p-2 rounded-full group-hover:bg-blue-500/10">
-                        <Share className="h-4 w-4" />
+                        <ChartNoAxesColumn className="h-4 w-4" />
                       </div>
                       <span>{post.views || 0}</span>
                     </button>
