@@ -55,8 +55,8 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
   
   return (
     <>
-      <aside className={`fixed ${isMobile ? 'left-4' : 'left-15'} top-0 h-screen bg-black w-20 xl:w-64 transition-all duration-300 z-40`}>
-        <div className={`px-3 w-20 xl:w-64 h-full flex flex-col`}>
+      <aside className={`fixed ${isMobile ? 'left-0' : 'left-14'} top-0 h-screen bg-black w-20 xl:w-64 transition-all duration-300 z-40`}>
+        <div className={`pl-3 pr-1 xl:px-1 w-20 xl:w-64 h-full flex flex-col`}>
           <div className="mb-2 px-3 py-2 mt-2">
             <div className="w-8 h-8">
               <img 
@@ -89,8 +89,8 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
             ))}
           </nav>
 
-          <Button className="bg-white hover:bg-white text-black rounded-full py-6 mb-4 text-lg font-bold w-full flex items-center justify-center xl:justify-start">
-            <Feather className="h-5 w-5" />
+          <Button className="bg-white hover:bg-white text-black rounded-full py-6 mb-4 text-lg font-bold w-full flex items-center justify-center">
+            <Feather className="h-5 w-5 xl:hidden" />
             <span className="hidden xl:inline xl:ml-2">Post</span>
           </Button>
 
@@ -109,7 +109,7 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
           </div>
         </div>
       </aside>
-      <div className={`ml-20 ${isMobile ? 'ml-4' : 'xl:ml-64'}`}>
+      <div className={`ml-20 ${isMobile ? 'ml-0' : 'xl:ml-64'}`}>
       </div>
     </>
   );
