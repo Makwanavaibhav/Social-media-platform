@@ -3,7 +3,7 @@ import { Search, MoreHorizontal } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
-const Explore = ({ onSearch }) => {
+const Explore = ({ onSearch, currentPage }) => {
   const [query, setQuery] = useState('');
   const [isActive, setIsActive] = useState(false);
   const searchContainerRef = useRef(null);
@@ -32,8 +32,9 @@ const Explore = ({ onSearch }) => {
     };
   }, []);
 
-  return (
+return (
     <div className="bg-black h-screen overflow-y-auto scrollbar-hide">
+      {currentPage !== 'explore' && (
       <div className="sticky top-0 z-20 bg-black p-4 pb-2" ref={searchContainerRef}>
         <form onSubmit={handleSubmit} className="relative">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -86,11 +87,12 @@ const Explore = ({ onSearch }) => {
                 </div>
               </div>
             </div>
-          )}
+)}
         </form>
       </div>
+      )}
 
-      <div className="px-4 pb-4">
+      <div className="px-4 py-4">
         <div className="bg-black rounded-2xl p-4 border border-gray-800 mb-4">
           <h2 className="text-xl font-bold text-white mb-1">Subscribe to Premium</h2>
           <div className="text-green-300/70 bg-green-950 border border-green-950 rounded-md w-20 h-6 font-bold text-sm text-center mb-2">50% off</div>
@@ -184,13 +186,13 @@ const Explore = ({ onSearch }) => {
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src="https://picsum.photos/200/200?random=1" />
-                  <AvatarFallback className="bg-gray-800 text-white">HR</AvatarFallback>
+                  <AvatarFallback className="bg-gray-800 text-white">Lana</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <div className="flex items-center gap-1">
-                    <span className="font-bold text-white">Hrithik Roshan</span>
+                    <span className="font-bold text-white">Lana del rey</span>
                   </div>
-                  <span className="text-gray-500 text-sm">@iHrithik</span>
+                  <span className="text-gray-500 text-sm">@lanadelrey</span>
                 </div>
                 <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-4 py-1 text-sm font-bold">
                   Follow
@@ -202,13 +204,13 @@ const Explore = ({ onSearch }) => {
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src="https://picsum.photos/200/200?random=2" />
-                  <AvatarFallback className="bg-gray-800 text-white">AK</AvatarFallback>
+                  <AvatarFallback className="bg-gray-800 text-white">AT</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <div className="flex items-center gap-1">
-                    <span className="font-bold text-white">Akshay Kumar</span>
+                    <span className="font-bold text-white">Abel Tesfaye</span>
                   </div>
-                  <span className="text-gray-500 text-sm">@akshaykumar</span>
+                  <span className="text-gray-500 text-sm">@theweeknd</span>
                 </div>
                 <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-4 py-1 text-sm font-bold">
                   Follow
@@ -220,13 +222,13 @@ const Explore = ({ onSearch }) => {
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src="https://picsum.photos/200/200?random=3" />
-                  <AvatarFallback className="bg-gray-800 text-white">SR</AvatarFallback>
+                  <AvatarFallback className="bg-gray-800 text-white">IS</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <div className="flex items-center gap-1">
-                    <span className="font-bold text-white">Shri Ram Janmbhoo...</span>
+                    <span className="font-bold text-white">Ian Somerhalder</span>
                   </div>
-                  <span className="text-gray-500 text-sm">@ShriRamTeerth</span>
+                  <span className="text-gray-500 text-sm">@iansomerhalder</span>
                 </div>
                 <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-4 py-1 text-sm font-bold">
                   Follow

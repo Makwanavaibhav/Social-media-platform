@@ -18,7 +18,7 @@ function App() {
         </main>
 
         <aside className="w-110 pr-10 hidden lg:block">
-          <Explore />
+          <Explore currentPage={currentPage} />
         </aside>
       </div>
       <Toaster />
