@@ -189,7 +189,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="bg-black text-white h-screen overflow-y-auto scrollbar-hide">
+    <div className="bg-black text-white h-screen overflow-y-auto scrollbar-hide ">
       <header className="sticky top-0 z-10 backdrop-blur-sm border-b border-gray-800 bg-black/80">
         <Tabs defaultValue="for-you" className="w-full" onValueChange={handleTabChange}>
           <TabsList variant="line" className="w-full h-auto bg-transparent border-none p-0 rounded-none flex">

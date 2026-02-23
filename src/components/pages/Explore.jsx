@@ -33,7 +33,7 @@ const Explore = ({ onSearch, currentPage }) => {
   }, []);
 
 return (
-    <div className="bg-black h-screen overflow-y-auto scrollbar-hide">
+    <div className="bg-black h-screen overflow-y-auto scrollbar-hide max-[1000px]:hidden transition-all duration-300">
       {currentPage !== 'explore' && (
       <div className="sticky top-0 z-20 bg-black p-4 pb-2" ref={searchContainerRef}>
         <form onSubmit={handleSubmit} className="relative">
