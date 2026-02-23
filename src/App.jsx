@@ -13,7 +13,7 @@ function App() {
       <div className="flex">
         <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
         
-        <main className="ml-20 flex-1 border-x border-[#2f3338] min-h-screen">
+        <main className="ml-20 lg:ml-24 2xl:ml-68 flex-1 border-x border-[#2f3338] min-h-screen">
           {currentPage === 'home' ? <HomePage /> : <ExplorePage />}
         </main>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Home,
   Search,
@@ -19,9 +19,24 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Sidebar = ({ currentPage = 'home', onNavigate }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showExplore, setShowExplore] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 1280);
+      setShowExplore(width >= 1000);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const navItems = [
     { icon: Home, label: 'Home', page: 'home' },
-    { icon: Search, label: 'Explore', page: 'explore' },
+    ...(showExplore ? [{ icon: Search, label: 'Explore', page: 'explore' }] : []),
     { icon: Bell, label: 'Notifications', page: 'notifications' },
     { icon: UserPlus, label: 'Follow', page: 'follow' },
     { icon: Mail, label: 'Chat', page: 'chat' },
@@ -40,8 +55,8 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
   
   return (
     <>
-      <aside className="fixed left-15 top-0 h-screen bg-black w-20 lg:w-64 transition-all duration-300 z-40">
-        <div className="px-3 w-20 lg:w-64 h-full flex flex-col">
+      <aside className={`fixed ${isMobile ? 'left-4' : 'left-15'} top-0 h-screen bg-black w-20 xl:w-64 transition-all duration-300 z-40`}>
+        <div className={`px-3 w-20 xl:w-64 h-full flex flex-col`}>
           <div className="mb-2 px-3 py-2 mt-2">
             <div className="w-8 h-8">
               <img 
@@ -59,7 +74,7 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
                 key={item.label}
                 onClick={() => handleNavClick(item.page)}
                 className={`
-                  flex items-center justify-center lg:justify-between gap-4 px-3 py-3 rounded-full text-xl transition-colors w-full
+                  flex items-center justify-center xl:justify-between gap-4 px-3 py-3 rounded-full text-xl transition-colors w-full
                   ${currentPage === item.page
                     ? 'font-bold text-white hover:bg-[#181818]' 
                     : 'font-medium text-gray-100 hover:bg-[#181818]'
@@ -68,33 +83,33 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
               >
                 <div className="flex items-center gap-5">
                   <item.icon className={`h-6 w-6 ${currentPage === item.page ? 'text-white' : 'text-gray-100'}`} />
-                  <span className="hidden lg:inline">{item.label}</span>
+                  <span className="hidden xl:inline">{item.label}</span>
                 </div>
               </button>
             ))}
           </nav>
 
-          <Button className="bg-white hover:bg-white text-black rounded-full py-6 mb-4 text-lg font-bold w-full flex items-center justify-center lg:justify-start">
+          <Button className="bg-white hover:bg-white text-black rounded-full py-6 mb-4 text-lg font-bold w-full flex items-center justify-center xl:justify-start">
             <Feather className="h-5 w-5" />
-            <span className="hidden lg:inline lg:ml-2">Post</span>
+            <span className="hidden xl:inline xl:ml-2">Post</span>
           </Button>
 
           <div className="mt-auto pt-4 mb-3">
-            <button className="flex items-center justify-center lg:justify-start gap-3 p-3 rounded-full hover:bg-[#181818] transition-colors w-full">
+            <button className="flex items-center justify-center xl:justify-start gap-3 p-3 rounded-full hover:bg-[#181818] transition-colors w-full">
               <Avatar className="h-10 w-10">
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback className="bg-gray-800 text-white">JD</AvatarFallback>
               </Avatar>
-              <div className="hidden lg:block flex-1 text-left">
+              <div className="hidden xl:block flex-1 text-left">
                 <p className="font-bold text-sm text-white">John Doe</p>
                 <p className="text-gray-500 text-sm">@johndoe</p>
               </div>
-              <MoreHorizontal className="hidden lg:block h-5 w-5 text-gray-500" />
+              <MoreHorizontal className="hidden xl:block h-5 w-5 text-gray-500" />
             </button>
           </div>
         </div>
       </aside>
-      <div className="ml-20 lg:ml-64">
+      <div className={`ml-20 ${isMobile ? 'ml-4' : 'xl:ml-64'}`}>
       </div>
     </>
   );
