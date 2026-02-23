@@ -34,7 +34,6 @@ const Explore = ({ onSearch }) => {
 
   return (
     <div className="bg-black h-screen overflow-y-auto scrollbar-hide">
-      {/* Search bar - sticky within the Explore container */}
       <div className="sticky top-0 z-20 bg-black p-4 pb-2" ref={searchContainerRef}>
         <form onSubmit={handleSubmit} className="relative">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -91,9 +90,7 @@ const Explore = ({ onSearch }) => {
         </form>
       </div>
 
-      {/* Content section - no internal scrolling, parent controls it */}
       <div className="px-4 pb-4">
-        {/* Subscribe to Premium */}
         <div className="bg-black rounded-2xl p-4 border border-gray-800 mb-4">
           <h2 className="text-xl font-bold text-white mb-1">Subscribe to Premium</h2>
           <div className="text-green-300/70 bg-green-950 border border-green-950 rounded-md w-20 h-6 font-bold text-sm text-center mb-2">50% off</div>
@@ -105,7 +102,6 @@ const Explore = ({ onSearch }) => {
           </Button>
         </div>
 
-        {/* Today's News */}
         <div className="bg-black rounded-2xl border border-gray-800 overflow-hidden mb-4">
           <h2 className="text-xl font-bold text-white p-4">Today's News</h2>
           
@@ -145,7 +141,6 @@ const Explore = ({ onSearch }) => {
           </div>
         </div>
 
-        {/* What's happening */}
         <div className="bg-black rounded-2xl border border-gray-800 overflow-hidden mb-4">
           <h2 className="text-xl font-bold text-white p-4">What's happening</h2>
           
@@ -181,7 +176,6 @@ const Explore = ({ onSearch }) => {
           </button>
         </div>
 
-        {/* Who to follow */}
         <div className="bg-black rounded-2xl border border-gray-800 overflow-hidden">
           <h2 className="text-xl font-bold text-white p-4">Who to follow</h2>
           

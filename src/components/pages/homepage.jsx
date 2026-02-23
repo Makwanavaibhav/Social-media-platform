@@ -255,7 +255,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Posts section */}
       <div className="divide-y divide-gray-800">
         {posts.map((post) => (
           <article key={post.id} className="p-4 hover:bg-gray-900/50 transition-colors">

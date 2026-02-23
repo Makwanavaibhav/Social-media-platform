@@ -40,7 +40,6 @@ const Sidebar = ({ currentPage = 'home', onNavigate }) => {
   
   return (
     <>
-      {/* Sidebar */}
       <aside className="fixed left-15 top-0 h-screen bg-black w-20 lg:w-64 transition-all duration-300 z-40">
         <div className="px-3 w-20 lg:w-64 h-full flex flex-col">
           <div className="mb-2 px-3 py-2 mt-2">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Heart,
   MessageCircle,
@@ -10,7 +10,8 @@ import {
   Calendar,
   MapPin,
   Globe,
-  Search
+  Search,
+  Settings
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -24,8 +25,37 @@ const Explorepage = () => {
   const [activeTab, setActiveTab] = useState('for-you');
   const [postText, setPostText] = useState('');
   const [showExplore, setShowExplore] = useState(false);
+  // Added missing search state
+  const [query, setQuery] = useState('');
+  const [isActive, setIsActive] = useState(false);
+  const searchContainerRef = useRef(null);
 
   const API_URL = 'https://698eff28aded595c25336fea.mockapi.io/tweets';
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Removed onSearch reference since it's not defined
+    console.log('Search query:', query);
+    setIsActive(false);
+  };
+
+  const handleFocus = () => {
+    setIsActive(true);
+  };
+
+  // Fixed nested useEffect and added proper click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -173,8 +203,8 @@ const Explorepage = () => {
   };
 
   if (loading) {
-  return (
-    <div className="bg-black text-white h-screen overflow-y-auto scrollbar-hide">
+    return (
+      <div className="bg-black text-white h-screen overflow-y-auto scrollbar-hide">
         <div className="flex justify-center items-center h-64">
           <div className="text-gray-500">Loading posts...</div>
         </div>
@@ -195,6 +225,64 @@ const Explorepage = () => {
   return (
     <div className="bg-black text-white h-screen overflow-y-auto scrollbar-hide">
       <header className="sticky top-0 z-10 backdrop-blur-sm border-b border-gray-800 bg-black/80">
+      <div className="sticky top-0 z-20 bg-black p-2 pb-1 w-full flex items-center justify-between px-4" ref={searchContainerRef}>
+          <form onSubmit={handleSubmit} className="relative flex-1 max-w-130">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-white/40" />
+            </div>
+            
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={handleFocus}
+              placeholder="Search"
+              className="block w-full pl-9 pr-4 py-3 font-sans border border-gray-700 rounded-full bg-black focus:bg-white/5 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 text-sm text-white placeholder-white/40 transition-all duration-200"
+            />
+     
+            {isActive && (
+              <div className="absolute top-full left-0 right-0 mt-1">
+                <div className="border border-gray-700 rounded-xl bg-black overflow-hidden shadow-[0_0_10px_rgba(255,255,255,0.4)] z-10">
+                  <div className="max-h-96 overflow-y-auto">
+                    {query ? (
+                      <>
+                        <div 
+                          className="p-4 hover:bg-[#202327] cursor-pointer border-b border-gray-800 last:border-0"
+                          onClick={() => {
+                            console.log('Search query:', query);
+                            setIsActive(false);
+                          }}
+                        >
+                          <p className="text-white font-medium">People matching "{query}"</p>
+                          <p className="text-gray-500 text-sm">@username</p>
+                        </div>
+                        <div 
+                          className="p-4 hover:bg-[#202327] cursor-pointer"
+                          onClick={() => {
+                            console.log('Search query:', query);
+                            setIsActive(false);
+                          }}
+                        >
+                          <p className="text-white font-medium">Keywords related to "{query}"</p>
+                          <p className="text-gray-500 text-sm">1.2K posts</p>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="p-4">
+                        <p className="text-gray-500 pb-8 text-center font-medium">
+                          Try searching for people, lists, or keywords
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </form>
+          <button className="p-2 rounded-full text-white hover:bg-white/10 transition-all duration-200 shrink-0 ml-4">
+          <Settings className='h-5 w-5'/>
+          </button>
+        </div>
         <Tabs defaultValue="for-you" className="w-full" onValueChange={handleTabChange}>
           <TabsList variant="line" className="w-full h-auto bg-transparent border-none p-0 rounded-none flex">
             <TabsTrigger 
@@ -279,7 +367,6 @@ const Explorepage = () => {
             </div>
           </div>
 
-          {/* Posts section */}
           <div className="divide-y divide-gray-800">
             {posts.map((post) => (
               <article key={post.id} className="p-4 hover:bg-gray-900/50 transition-colors">
