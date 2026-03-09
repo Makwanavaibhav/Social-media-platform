@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Sidebar from './components/pages/sidebar';
-import { Toaster } from '@/components/ui/sonner';
-import HomePage from '@/components/pages/homepage';
+import { Toaster } from './components/ui/sonner';
+import HomePage from './components/pages/homepage';
 import Explore from './components/pages/Explore';
-import ExplorePage from '@/components/pages/explorepage';
+import ExplorePage from './components/pages/explorepage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');

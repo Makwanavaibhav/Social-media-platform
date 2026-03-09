@@ -15,8 +15,8 @@ import {
   UserPlus,
   Zap
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from './components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar';
 
 const Sidebar = ({ currentPage = 'home', onNavigate }) => {
   const [isMobile, setIsMobile] = useState(false);

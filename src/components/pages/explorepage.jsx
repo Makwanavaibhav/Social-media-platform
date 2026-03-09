@@ -13,10 +13,9 @@ import {
   Search,
   Settings
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
+import { Button } from './components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar';
+import { Tabs, TabsList, TabsTrigger } from './components/ui/tabs';
 
 const Explorepage = () => {
   const [posts, setPosts] = useState([]);

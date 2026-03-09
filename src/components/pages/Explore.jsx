@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, MoreHorizontal } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar';
+import { Button } from './components/ui/button';
 
 const Explore = ({ onSearch, currentPage }) => {
   const [query, setQuery] = useState('');
